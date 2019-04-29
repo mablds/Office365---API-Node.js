@@ -51,12 +51,13 @@ app.post('/resolves', (req, res) => {
         request(elem)
             .then(function (response) {
                 console.log(response)
+                res.send('200')
             })
             .catch(function (err) {
                 console.log('Erro de request ' + err)
             })
             
-        res.send('200')
+        
     })
 })
 
