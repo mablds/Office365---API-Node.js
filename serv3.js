@@ -14,5 +14,6 @@ app.post('/op', (req, res) => {
     const operacao = req.body.op.split('+')
     const num1 = parseInt(operacao[0])
     const num2 = parseInt(operacao[1])
-    console.log(num1 + num2)
+    const solvedNumber = num1 + num2
+    console.log(solvedNumber)
 })
