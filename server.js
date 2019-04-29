@@ -13,39 +13,39 @@ app.listen(3000, () => {
 })
 
 app.post('/resolves', (req, res) => {
-        const options = [{
-            method: "POST",
-            uri: "http://localhost:3001/op",
-            body : {
-                op: opJson["op1"]
-            },
-            json : true
+    const options = [{
+        method: "POST",
+        uri: "http://localhost:3001/op",
+        body: {
+            op: opJson["op1"]
         },
-        {
-            method: 'POST',
-            uri: 'http://localhost:3002/op',
-            body : {
-                op: opJson["op2"]
-            },
-            json : true
+        json: true
+    },
+    {
+        method: 'POST',
+        uri: 'http://localhost:3002/op',
+        body: {
+            op: opJson["op2"]
         },
-        {
-            method: 'POST',
-            uri: 'http://localhost:3003/op',
-            body : {
-                op: opJson["op3"]
-            },
-            json : true
+        json: true
+    },
+    {
+        method: 'POST',
+        uri: 'http://localhost:3003/op',
+        body: {
+            op: opJson["op3"]
         },
-        {
-            method: 'POST',
-            uri: 'http://localhost:3004/op',
-            body : {
-                op: opJson["op4"]
-            },
-            json : true
-        }]
-    
+        json: true
+    },
+    {
+        method: 'POST',
+        uri: 'http://localhost:3004/op',
+        body: {
+            op: opJson["op4"]
+        },
+        json: true
+    }]
+
     options.forEach(elem => {
         console.log(elem)
         request(elem)
@@ -56,8 +56,6 @@ app.post('/resolves', (req, res) => {
             .catch(function (err) {
                 console.log('Erro de request ' + err)
             })
-            
-        
     })
 })
 
