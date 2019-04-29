@@ -1,0 +1,25 @@
+{
+  "name": "office365---api-node",
+  "version": "1.0.0",
+  "description": "testing office's api",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mablds/Office365---API-Node.js.git"
+  },
+  "author": "marcelo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mablds/Office365---API-Node.js/issues"
+  },
+  "homepage": "https://github.com/mablds/Office365---API-Node.js#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
