@@ -16,11 +16,8 @@ app.post('/op', (req, res) => {
     const operacao = req.body.op.split('+')
     const num1 = parseInt(operacao[0])
     const num2 = parseInt(operacao[1])
-    // solvedNumber += num1
-    // solvedNumber += num2
     const solvedNumber = num1 + num2
-    // aux += solvedNumber
-    console.log(solvedNumber)
+    res.send(''+solvedNumber)
 })
 const bla = aux
 // module.exports.solvedNumber = bla

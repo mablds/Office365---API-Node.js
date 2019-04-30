@@ -1,87 +1,66 @@
 const express = require('express')
 const request = require('request-promise')
 const app = express()
-const opJson = {
-    op1: "32+33",
-    op2: "2+4",
-    op3: "6+3",
-    op4: "10+8",
-}
+const bodyParser = require('body-parser');
+
+
+app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(3000, () => {
     console.log('Master Server \nPorta: 3000')
 })
 
+function optionFactory(index, op){
+    return {
+        method: 'POST',
+        uri: 'http://localhost:300'+ index +'/op',
+        body: {
+            op: op
+        },
+        json: true
+    }
+}
+
+// console.log(elem)
+
+
+const obj = {}
+
+// server2
 app.post('/resolves', (req, res) => {
-        const options = [{
-            method: "POST",
-            uri: "http://localhost:3001/op",
-            body : {
-                op: opJson["op1"]
-            },
-            json : true
-        },
-        {
-            method: 'POST',
-            uri: 'http://localhost:3002/op',
-            body : {
-                op: opJson["op2"]
-            },
-            json : true
-        },
-        {
-            method: 'POST',
-            uri: 'http://localhost:3003/op',
-            body : {
-                op: opJson["op3"]
-            },
-            json : true
-        },
-        {
-            method: 'POST',
-            uri: 'http://localhost:3004/op',
-            body : {
-                op: opJson["op4"]
-            },
-            json : true
-        }]
-    
-    options.forEach(elem => {
-        console.log(elem)
-        request(elem)
-            .then(function (response) {
-                console.log(response)
-                res.send('200')
-            })
-            .catch(function (err) {
-                console.log('Erro de request ' + err)
-            })
-            
-        
-    })
+    const opJson = req.body.options
+    request(optionFactory(1, opJson["op1"]))
+        .then(function (response) {
+            obj['1'] = response
+            request(optionFactory(2, opJson["op2"]))
+                .then(function (response) {
+                    obj['2'] = response
+                    request(optionFactory(3, opJson["op3"]))
+                        .then(function (response) {
+                            obj['3'] = response
+                            request(optionFactory(4, opJson["op4"]))
+                                .then(function (response) {
+                                    obj['4'] = response  
+                                    
+                                    res.send(JSON.stringify(obj))
+                                })
+                                .catch(function (err) {
+                                    console.log('Erro de request ' + err)
+                                })
+                        })
+                        .catch(function (err) {
+                            console.log('Erro de request ' + err)
+                        })
+                })
+                .catch(function (err) {
+                    console.log('Erro de request ' + err)
+                })
+        })
+        .catch(function (err) {
+            console.log('Erro de request ' + err)
+        })
 })
-
-// app.post('/resolves', (req, res) => {
-//     const options = {
-//         method: 'POST',
-//         uri: `http://localhost:3001/op}`,
-//         body: {
-//             op: opJson['op1']
-//         },
-//         json: true
-//     }
-
-//     request(options)
-//         .then(function (response) {
-//             console.log(response)
-//         })
-//         .catch(function (err) {
-//             console.log('Erro de request ' + err)
-//         })
-//     // req.body
-
-//     res.send()
-// })
 
 
 
