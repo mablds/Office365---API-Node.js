@@ -1,16 +1,12 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
-const aux = 0
-// const solvedNumber = 0
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.listen(3002, () => {
-    console.log('Slave Server 2 \nPorta: 3002')
-})
+    console.log('Slave Server 2 \nPorta: 3002')})
 
 app.post('/op', (req, res) => {
     const operacao = req.body.op.split('+')
@@ -19,5 +15,4 @@ app.post('/op', (req, res) => {
     const solvedNumber = num1 + num2
     res.send(''+solvedNumber)
 })
-const bla = aux
 // module.exports.solvedNumber = bla
