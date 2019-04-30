@@ -11,4 +11,5 @@ function optionFactory(index, op){
 }
 
 
-console.log(optionFactory(1, "32+33"))
+// console.log(optionFactory(1, "32+33"))
+console.log('op3')
