@@ -1,2 +1,2 @@
 # Node.js-Exercises-adventure
-Structuring multiple servers and distributing client's requisitions.
+Dealing with mutiple microservices and requests to them synchronously
